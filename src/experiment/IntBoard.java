@@ -1,6 +1,7 @@
 package experiment;
 
 import java.util.Set;
+import java.util.Vector;
 
 public class IntBoard {
 	// TODO: create data structures for board storage (adjacency list, visited, targets, grid)
@@ -23,10 +24,5 @@ public class IntBoard {
 	
 	public Set<BoardCell> getAdjList(BoardCell cell) {
 		return null;
-	}
-	
-	public BoardCell getCell(int row, int column) {
-		BoardCell cell = new BoardCell(row, column);
-		return cell;
 	}
 }
