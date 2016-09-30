@@ -1,2 +1,2 @@
-# ClueGame
-Clue Game project for CSCI306
+# ClueGameBBMB
+Clue Game project for CSCI306 by Bixler Baker and Michael Balmes
