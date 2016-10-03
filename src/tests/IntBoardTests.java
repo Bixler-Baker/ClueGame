@@ -99,7 +99,7 @@ public class IntBoardTests {
 		assertTrue(testList.contains(new BoardCell(3, 2)));
 		assertEquals(4, testList.size());
 	}
-	
+/*	
 	@Test
 	public void testTargets0_3()
 	{
@@ -173,5 +173,5 @@ public class IntBoardTests {
 		Set targets = board.getTargets();
 		assertEquals(1, targets.size());
 		assertTrue(targets.contains(board.getCell(3, 1)));
-	}
+	}*/
 }
