@@ -1,7 +1,7 @@
 package experiment;
 
+import java.util.HashSet;
 import java.util.Set;
-import java.util.Vector;
 
 public class IntBoard {
 	// TODO: create data structures for board storage (adjacency list, visited, targets, grid)
@@ -14,7 +14,7 @@ public class IntBoard {
 		return;
 	}
 	
-	public void calcTargets(int startCell, int pathLength) {
+	public void calcTargets(BoardCell cell, int pathLength) {
 		return;
 	}
 	
@@ -22,7 +22,13 @@ public class IntBoard {
 		return null;
 	}
 	
+	
 	public Set<BoardCell> getAdjList(BoardCell cell) {
+		return null;
+	}
+
+	public BoardCell getCell(int i, int j) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 }
