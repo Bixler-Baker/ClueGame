@@ -8,7 +8,6 @@ public class IntBoard {
 	BoardCell[][] board = new BoardCell[4][4];
 	HashMap<BoardCell, HashSet<BoardCell>> adjacencies;
 	HashSet<BoardCell> targetCells;
-	HashSet<BoardCell> visitedCells;
 	
 	public IntBoard() {
 		for(int i=0;i<board.length;i++){
