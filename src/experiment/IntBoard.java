@@ -1,13 +1,14 @@
 package experiment;
 
+import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class IntBoard {
 	BoardCell[][] board = new BoardCell[4][4];
-	HashSet<BoardCell> adjCells;
+	HashMap<BoardCell, HashSet<BoardCell>> adjacencies;
 	HashSet<BoardCell> targetCells;
+	HashSet<BoardCell> visitedCells;
 	
 	public IntBoard() {
 		for(int i=0;i<board.length;i++){
@@ -15,36 +16,50 @@ public class IntBoard {
 				board[i][j]=new BoardCell(i,j);
 			}
 		}
+		calcAdjacencies();
+		targetCells = new HashSet<BoardCell>();
+		visitedCells = new HashSet<BoardCell>();
 	}
 	
 	public void calcAdjacencies() {
-		return;
+		adjacencies = new HashMap<BoardCell, HashSet<BoardCell>>();
+		for(int i=0;i<board.length;i++){
+			for(int j=0;j<board[0].length;j++){
+				BoardCell cell = board[i][j];
+				adjacencies.put(cell, new HashSet<BoardCell>());
+				if(cell.getRow()>0){
+					adjacencies.get(cell).add(board[cell.getRow()-1][cell.getColumn()]);
+				}
+				if(cell.getRow()<board.length-1){
+					adjacencies.get(cell).add(board[cell.getRow()+1][cell.getColumn()]);
+				}
+				if(cell.getColumn()>0){
+					adjacencies.get(cell).add(board[cell.getRow()][cell.getColumn()-1]);
+				}
+				if(cell.getColumn()<board[0].length-1){
+					adjacencies.get(cell).add(board[cell.getRow()][cell.getColumn()+1]);
+				}
+			}
+		}
 	}
 	
-	public void calcTargets(BoardCell cell, int pathLength) {
-		return;
+	public void calcTargets(BoardCell cell, int pathLength){
+		for(int i=0;i<board.length;i++){
+			for(int j=0;j<board[0].length;j++){
+				if(Math.abs(cell.getRow()-board[i][j].getRow())+Math.abs(cell.getColumn()-board[i][j].getColumn())==pathLength){
+					targetCells.add(board[i][j]);
+				}
+			}
+		}
 	}
 	
 	public Set<BoardCell> getTargets() {
-		return null;
+		return targetCells;
 	}
 	
 	
 	public Set<BoardCell> getAdjList(BoardCell cell) {
-		adjCells = new HashSet<BoardCell>();
-		if(cell.getRow()>0){
-			adjCells.add(board[cell.getRow()-1][cell.getColumn()]);
-		}
-		if(cell.getRow()<board.length-1){
-			adjCells.add(board[cell.getRow()+1][cell.getColumn()]);
-		}
-		if(cell.getColumn()>0){
-			adjCells.add(board[cell.getRow()][cell.getColumn()-1]);
-		}
-		if(cell.getColumn()<board[0].length-1){
-			adjCells.add(board[cell.getRow()][cell.getColumn()+1]);
-		}
-		return adjCells;
+		return adjacencies.get(cell);
 	}
 
 	public BoardCell getCell(int i, int j) {

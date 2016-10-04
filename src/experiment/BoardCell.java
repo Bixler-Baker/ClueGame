@@ -27,13 +27,14 @@ public class BoardCell{
 	}
 
 	public void setColumn(int column) { this.row = column; }
-
-	public boolean equals(Object bc) {
-		return ((BoardCell) bc).getRow()==this.getRow()&&((BoardCell) bc).getColumn()==this.getColumn();
+	@Override
+	public boolean equals(Object o) {
+		return ((BoardCell) o).getRow()==this.getRow()&&((BoardCell) o).getColumn()==this.getColumn();
 	}
 	public String toString(){
 		return "["+this.getRow()+","+this.getColumn()+"]";
 	}
+	@Override
 	public int hashCode(){
 		return (this.getRow()+1)*7+(this.getColumn()+1)*14;
 	}
