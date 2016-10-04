@@ -1,4 +1,4 @@
-package experiment;
+package clueGame;
 /**
  * 
  * @author Michael Balmes and Bixler Baker
