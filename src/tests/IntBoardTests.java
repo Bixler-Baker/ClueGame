@@ -104,7 +104,9 @@ public class IntBoardTests {
 		assertEquals(4, testList.size());
 	}
 	
-	@Test
+	/*
+	 * Test targets at 0,0 3 tiles away
+	 */
 	public void testTargets0_3()
 	{
 		BoardCell cell = board.getCell(0, 0);
@@ -117,7 +119,9 @@ public class IntBoardTests {
 		assertTrue(targets.contains(board.getCell(0, 3)));
 	}
 	
-	@Test
+	/*
+	 * Test targets at 3,0 3 tiles away
+	 */
 	public void testTargets1_3()
 	{
 		BoardCell cell = board.getCell(3, 0);
@@ -130,7 +134,9 @@ public class IntBoardTests {
 		assertTrue(targets.contains(board.getCell(2, 2)));
 	}
 	
-	@Test
+	/*
+	 * Test targets at 1,1 2 tiles away
+	 */
 	public void testTargets0_2()
 	{
 		BoardCell cell = board.getCell(1,1);
@@ -158,7 +164,9 @@ public class IntBoardTests {
 		assertTrue(targets.contains(board.getCell(1, 0)));
 	}
 	
-	@Test
+	/*
+	 * Test targets at 1,1 1 tiles away
+	 */
 	public void testTargets0_1()
 	{
 		BoardCell cell = board.getCell(1,1);
@@ -168,7 +176,9 @@ public class IntBoardTests {
 		assertTrue(targets.contains(board.getCell(1,0)));
 	}
 	
-	@Test
+	/*
+	 * Test targets at 3,1 1 tiles away
+	 */
 	public void testTargets1_1()
 	{
 		BoardCell cell = board.getCell(3,1);

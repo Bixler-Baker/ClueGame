@@ -17,7 +17,6 @@ public class IntBoard {
 		}
 		calcAdjacencies();
 		targetCells = new HashSet<BoardCell>();
-		visitedCells = new HashSet<BoardCell>();
 	}
 	
 	public void calcAdjacencies() {
