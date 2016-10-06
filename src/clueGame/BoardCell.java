@@ -5,7 +5,7 @@ package clueGame;
  *
  */
 public class BoardCell{
-	private enum CellType{
+	public enum CellType{
 		WALKWAY,ROOM,DOORWAY
 	}
 	private int row, column;
@@ -79,6 +79,10 @@ public class BoardCell{
 	}
 
 	public Object getInitial() {
-		return 'z';
+		return this.initial;
+	}
+	
+	public void setType(CellType type){
+		this.type = type;
 	}
 }
