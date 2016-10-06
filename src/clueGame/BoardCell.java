@@ -27,13 +27,28 @@ public class BoardCell{
 	}
 
 	public void setColumn(int column) { this.row = column; }
+	
+	public boolean isDoorway() {
+		return false;
+	}
+	
+	public DoorDirection getDoorDirection() {
+		return null;
+	}
+	
+	public char getInitial() {
+		return 'z';
+	}
+	
 	@Override
 	public boolean equals(Object o) {
 		return ((BoardCell) o).getRow()==this.getRow()&&((BoardCell) o).getColumn()==this.getColumn();
 	}
+	
 	public String toString(){
 		return "["+this.getRow()+","+this.getColumn()+"]";
 	}
+	
 	@Override
 	public int hashCode(){
 		return (this.getRow()+1)*7+(this.getColumn()+1)*14;
