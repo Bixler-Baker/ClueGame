@@ -5,11 +5,30 @@ package clueGame;
  *
  */
 public class BoardCell{
+	private enum CellType{
+		WALKWAY,ROOM,DOORWAY
+	}
 	private int row, column;
-	
+	private char initial;
+	private CellType type;
+	private DoorDirection doorDirection;
 	public BoardCell(int row, int column) {
 		this.row = row;
 		this.column = column;
+		this.type=CellType.WALKWAY;
+	}
+	
+	public BoardCell(int row, int column, CellType type) {
+		this.row = row;
+		this.column = column;
+		this.type = type;
+	}
+	
+	public BoardCell(int row, int column, DoorDirection doorDirection) {
+		this.row = row;
+		this.column = column;
+		this.type = CellType.DOORWAY;
+		this.doorDirection=doorDirection;
 	}
 	
 	public int Row() { return row; }
@@ -34,8 +53,30 @@ public class BoardCell{
 	public String toString(){
 		return "["+this.getRow()+","+this.getColumn()+"]";
 	}
+	
 	@Override
 	public int hashCode(){
 		return (this.getRow()+1)*7+(this.getColumn()+1)*14;
+	}
+	
+	public boolean isWalkway(){
+		return type==CellType.WALKWAY;
+	}
+	
+	public boolean isRoom(){
+		return type==CellType.ROOM;
+	}
+	
+	public boolean isDoorway(){
+		return type==CellType.DOORWAY;
+	}
+
+	public DoorDirection getDoorDirection() {
+		return this.doorDirection;
+	}
+
+	public Object getInitial() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
