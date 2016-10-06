@@ -1,8 +1,11 @@
 package clueGame;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.Set;
 
 public class Board {
@@ -27,7 +30,30 @@ public class Board {
 	}
 	
 	public void initialize() {
-		
+		try {
+			File fileinLayout = new File(boardConfigFile);
+			File fileinLegend = new File(roomConfig);
+			Scanner scLayout = new Scanner(fileinLayout);
+			Scanner scLegend = new Scanner(fileinLegend);
+			
+			while (scLegend.hasNextLine()) {
+				// Gets room initial from legend file
+				Character a = scLegend.next().charAt(0);
+				// Gets room name from legend file
+				String str = scLegend.next();
+				str = str.substring(0, str.length() - 2);
+				this.rooms.put(a, str);
+				// Gets room type from legend file
+				str = scLegend.next();
+				str = str.substring(0, str.length() - 2);
+			}
+			
+			while (scLayout.hasNextLine()) {
+				
+			}
+		} catch(FileNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public Map<Character, String> getLegend() {
