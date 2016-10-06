@@ -9,9 +9,15 @@ public class BoardCell{
 		WALKWAY,ROOM,DOORWAY
 	}
 	private int row, column;
+<<<<<<< HEAD
 	private char initial;
 	private CellType type;
 	private DoorDirection doorDirection;
+=======
+	private boolean door;
+	private DoorDirection doorDir;
+	
+>>>>>>> 7e6eeb416300d6fc8a5c1729e9c94be7ce52f60b
 	public BoardCell(int row, int column) {
 		this.row = row;
 		this.column = column;
