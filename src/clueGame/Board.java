@@ -48,10 +48,6 @@ public class Board {
 			while (scLayout.hasNextLine()) {
 				String str = scLayout.nextLine();
 				for (int i = 0; i < str.length(); i++) {
-					if (str.charAt(i) == ',') {
-						i--;
-						continue;
-					}
 				}
 				lineCount++;
 			}
@@ -61,15 +57,15 @@ public class Board {
 	}
 	
 	public Map<Character, String> getLegend() {
-		return null;
+		return this.rooms;
 	}
 	
 	public int getNumRows() {
-		return 0;
+		return this.numRows;
 	}
 	
 	public int getNumColumns() {
-		return 0;
+		return this.numColumns;
 	}
 	
 	public BoardCell getCellAt(int row, int column) {
