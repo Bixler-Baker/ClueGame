@@ -27,6 +27,7 @@ public class Board {
 	public void setConfigFiles(String map, String legend) {
 		this.boardConfigFile = map;
 		this.roomConfig = legend;
+		this.rooms = new HashMap<Character, String>();
 	}
 	
 	public void initialize() {
@@ -37,19 +38,22 @@ public class Board {
 			Scanner scLegend = new Scanner(fileinLegend);
 			
 			while (scLegend.hasNextLine()) {
-				// Gets room initial from legend file
-				Character a = scLegend.next().charAt(0);
-				// Gets room name from legend file
-				String str = scLegend.next();
-				str = str.substring(0, str.length() - 2);
-				this.rooms.put(a, str);
-				// Gets room type from legend file
-				str = scLegend.next();
-				str = str.substring(0, str.length() - 2);
+				String str = scLegend.nextLine();
+				String[] lineArray = str.split(", ");
+				this.rooms.put(lineArray[0].charAt(0), lineArray[1]);
 			}
+			scLegend.close();
 			
+			int lineCount = 0;
 			while (scLayout.hasNextLine()) {
-				
+				String str = scLayout.nextLine();
+				for (int i = 0; i < str.length(); i++) {
+					if (str.charAt(i) == ',') {
+						i--;
+						continue;
+					}
+				}
+				lineCount++;
 			}
 		} catch(FileNotFoundException e) {
 			e.printStackTrace();
