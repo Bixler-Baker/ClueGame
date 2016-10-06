@@ -9,15 +9,9 @@ public class BoardCell{
 		WALKWAY,ROOM,DOORWAY
 	}
 	private int row, column;
-<<<<<<< HEAD
 	private char initial;
 	private CellType type;
 	private DoorDirection doorDirection;
-=======
-	private boolean door;
-	private DoorDirection doorDir;
-	
->>>>>>> 7e6eeb416300d6fc8a5c1729e9c94be7ce52f60b
 	public BoardCell(int row, int column) {
 		this.row = row;
 		this.column = column;
@@ -53,17 +47,6 @@ public class BoardCell{
 
 	public void setColumn(int column) { this.row = column; }
 	
-	public boolean isDoorway() {
-		return false;
-	}
-	
-	public DoorDirection getDoorDirection() {
-		return null;
-	}
-	
-	public char getInitial() {
-		return 'z';
-	}
 	
 	@Override
 	public boolean equals(Object o) {
@@ -96,7 +79,6 @@ public class BoardCell{
 	}
 
 	public Object getInitial() {
-		// TODO Auto-generated method stub
-		return null;
+		return 'z';
 	}
 }
