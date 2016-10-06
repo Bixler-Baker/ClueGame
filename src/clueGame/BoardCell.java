@@ -6,6 +6,8 @@ package clueGame;
  */
 public class BoardCell{
 	private int row, column;
+	private boolean door;
+	private DoorDirection doorDir;
 	
 	public BoardCell(int row, int column) {
 		this.row = row;

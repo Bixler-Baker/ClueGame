@@ -22,7 +22,8 @@ public class Board {
 	public static Board getInstance() { return theInstance; }
 	
 	public void setConfigFiles(String map, String legend) {
-		
+		this.boardConfigFile = map;
+		this.roomConfig = legend;
 	}
 	
 	public void initialize() {
