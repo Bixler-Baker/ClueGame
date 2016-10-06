@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
+import clueGame.BoardCell;
+
 public class IntBoard {
 	BoardCell[][] board = new BoardCell[4][4];
 	HashMap<BoardCell, HashSet<BoardCell>> adjacencies;
