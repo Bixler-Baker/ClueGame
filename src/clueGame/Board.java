@@ -2,6 +2,7 @@ package clueGame;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -22,12 +23,14 @@ public class Board {
 
 	private Board() {}
 	
-	public static Board getInstance() { return theInstance; }
+	public static Board getInstance() { 
+		return theInstance; 	
+	}
 	
 	public void setConfigFiles(String map, String legend) {
-		this.boardConfigFile = map;
-		this.roomConfig = legend;
-		this.rooms = new HashMap<Character, String>();
+		Board.boardConfigFile = map;
+		Board.roomConfig = legend;
+		Board.rooms = new HashMap<Character, String>();
 	}
 	
 	public void initialize() {
@@ -40,16 +43,52 @@ public class Board {
 			while (scLegend.hasNextLine()) {
 				String str = scLegend.nextLine();
 				String[] lineArray = str.split(", ");
-				this.rooms.put(lineArray[0].charAt(0), lineArray[1]);
+				Board.rooms.put(lineArray[0].charAt(0), lineArray[1]);
 			}
 			scLegend.close();
 			
 			int lineCount = 0;
+			ArrayList<String> cellTypes = new ArrayList<String>();
 			while (scLayout.hasNextLine()) {
 				String str = scLayout.nextLine();
-				for (int i = 0; i < str.length(); i++) {
+				String[] strArray = str.split(",");
+				for (int i = 0; i < strArray.length; i++) {
+					cellTypes.add(strArray[i]);
 				}
 				lineCount++;
+			}
+			scLayout.close();
+			
+			int cellNum = 0;
+			Board.numRows = lineCount;
+			Board.numColumns = cellTypes.size() / Board.numRows;
+			board = new BoardCell[numRows][numColumns];
+			for (int i = 0; i < Board.numRows; i++) {
+				for (int j = 0; j < Board.numColumns; j++) {
+					board[i][j] = new BoardCell(i, j);
+					if (cellTypes.get(cellNum).length() > 1) {
+						board[i][j].setType(BoardCell.CellType.DOORWAY);
+						if (cellTypes.get(cellNum).charAt(1) == 'U') {
+							board[i][j].setDoorDirection(DoorDirection.UP);
+						} else if (cellTypes.get(cellNum).charAt(1) == 'R') {
+							board[i][j].setDoorDirection(DoorDirection.RIGHT);
+						} else if (cellTypes.get(cellNum).charAt(1) == 'D') {
+							board[i][j].setDoorDirection(DoorDirection.DOWN);
+						} else if (cellTypes.get(cellNum).charAt(1) == 'L') {
+							board[i][j].setDoorDirection(DoorDirection.LEFT);
+						} else {
+							board[i][j].setType(BoardCell.CellType.ROOM);
+						}
+					} else if (cellTypes.get(cellNum) == "W") {
+						board[i][j].setType(BoardCell.CellType.WALKWAY);
+					} else {
+						board[i][j].setType(BoardCell.CellType.ROOM);
+					}
+					
+					board[i][j].setInitial(cellTypes.get(cellNum).charAt(0));
+					
+					cellNum++;
+				}
 			}
 		} catch(FileNotFoundException e) {
 			e.printStackTrace();
@@ -57,19 +96,19 @@ public class Board {
 	}
 	
 	public Map<Character, String> getLegend() {
-		return this.rooms;
+		return Board.rooms;
 	}
 	
 	public int getNumRows() {
-		return this.numRows;
+		return Board.numRows;
 	}
 	
 	public int getNumColumns() {
-		return this.numColumns;
+		return Board.numColumns;
 	}
 	
 	public BoardCell getCellAt(int row, int column) {
-		return null;
+		return board[row][column];
 	}
 	
 	public void calcAdjacencies() {
@@ -108,5 +147,13 @@ public class Board {
 	
 	public BoardCell getCell(int row, int column) {
 		return board[row][column];
+	}
+
+	public Set<BoardCell> getAdjList(int i, int j) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void calcTargets(int i, int j, int k) {
 	}
 }

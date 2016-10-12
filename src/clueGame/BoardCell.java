@@ -85,4 +85,12 @@ public class BoardCell{
 	public void setType(CellType type){
 		this.type = type;
 	}
+	
+	public void setInitial(char a){
+		this.initial = a;
+	}
+	
+	public void setDoorDirection(DoorDirection d) {
+		this.doorDirection = d;
+	}
 }

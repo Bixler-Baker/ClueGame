@@ -5,11 +5,13 @@ import java.util.HashSet;
 import java.util.Set;
 
 import clueGame.BoardCell;
+import clueGame.DoorDirection;
 
 public class IntBoard {
 	BoardCell[][] board = new BoardCell[4][4];
 	HashMap<BoardCell, HashSet<BoardCell>> adjacencies;
 	HashSet<BoardCell> targetCells;
+	HashSet<BoardCell> visitedCells;
 	
 	public IntBoard() {
 		for(int i=0;i<board.length;i++){
@@ -18,7 +20,6 @@ public class IntBoard {
 			}
 		}
 		calcAdjacencies();
-		targetCells = new HashSet<BoardCell>();
 	}
 	
 	public void calcAdjacencies() {
@@ -44,12 +45,45 @@ public class IntBoard {
 	}
 	
 	public void calcTargets(BoardCell cell, int pathLength){
-		for(int i=0;i<board.length;i++){
-			for(int j=0;j<board[0].length;j++){
-				if(Math.abs(cell.getRow()-board[i][j].getRow())+Math.abs(cell.getColumn()-board[i][j].getColumn())==pathLength){
-					targetCells.add(board[i][j]);
+		targetCells = new HashSet<BoardCell>();
+		visitedCells = new HashSet<BoardCell>();
+		this.visitedCells.add(cell);
+		findAllTargets(cell, pathLength);
+	}
+	
+	public void findAllTargets(BoardCell cell, int pathLength){
+		HashSet<BoardCell> adjCells = this.adjacencies.get(cell);
+		for(BoardCell bc: adjCells){
+			if(!this.visitedCells.contains(bc)&&!bc.isRoom()){
+				if(bc.isDoorway()){
+					if(bc.getDoorDirection()==DoorDirection.DOWN&&cell.getRow()==bc.getRow()+1){
+						this.targetCells.add(bc);
+						continue;
+					}
+					else if(bc.getDoorDirection()==DoorDirection.UP&&cell.getRow()==bc.getRow()-1){
+						this.targetCells.add(bc);
+						continue;
+					}
+					else if(bc.getDoorDirection()==DoorDirection.RIGHT&&cell.getColumn()==bc.getColumn()-1){
+						this.targetCells.add(bc);
+						continue;
+					}
+					else if(bc.getDoorDirection()==DoorDirection.LEFT&&cell.getColumn()==bc.getColumn()+1){
+						this.targetCells.add(bc);
+						continue;
+					}
 				}
+				this.visitedCells.add(bc);
+				if(pathLength==1){
+					this.targetCells.add(bc);
+				}
+				else{
+					
+					findAllTargets(bc,pathLength-1);
+				}
+				this.visitedCells.remove(bc);
 			}
+			
 		}
 	}
 	

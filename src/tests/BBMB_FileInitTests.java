@@ -23,7 +23,7 @@ public class BBMB_FileInitTests {
 		// Board is singleton, get the only instance
 		board = Board.getInstance();
 		// set the file names to use my config files
-		board.setConfigFiles("BBMB_ClueLayout.csv", "BBMB_ClueLegend.txt");		
+		board.setConfigFiles("data/BBMB_ClueLayout.csv", "data/BBMB_ClueLegend.txt");		
 		// Initialize will load BOTH config files 
 		board.initialize();
 	}
@@ -117,13 +117,13 @@ public class BBMB_FileInitTests {
 		// Test first cell in room
 		assertEquals('O', board.getCellAt(0, 15).getInitial());
 		assertEquals('P', board.getCellAt(1, 1).getInitial());
-		assertEquals('B', board.getCellAt(0, 8).getInitial());
+		assertEquals('B', board.getCellAt(0, 9).getInitial());
 		// Test last cell in room
 		assertEquals('L', board.getCellAt(9, 22).getInitial());
-		assertEquals('G', board.getCellAt(4, 12).getInitial());
+		assertEquals('G', board.getCellAt(12, 4).getInitial());
 		// Test a walkway
 		assertEquals('W', board.getCellAt(14, 9).getInitial());
 		// Test the closet
-		assertEquals('X', board.getCellAt(7, 14).getInitial());
+		assertEquals('X', board.getCellAt(7, 10).getInitial());
 	}
 }

@@ -158,8 +158,8 @@ public class IntBoardTests {
 	{
 		BoardCell cell = board.getCell(3,1);
 		board.calcTargets(cell, 3);
-		Set targets = board.getTargets();
-		assertEquals(4, targets.size());
+		Set<BoardCell> targets = board.getTargets();
+		assertEquals(7, targets.size());
 		assertTrue(targets.contains(board.getCell(0, 1)));
 		assertTrue(targets.contains(board.getCell(1, 2)));
 		assertTrue(targets.contains(board.getCell(2, 3)));
