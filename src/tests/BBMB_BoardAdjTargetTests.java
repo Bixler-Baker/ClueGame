@@ -22,7 +22,7 @@ public class BBMB_BoardAdjTargetTests {
 	public static void setUp() {
 		// Board is singleton, get the only instance and initialize it		
 		board = Board.getInstance();
-		board.setConfigFiles("BBMB_ClueLayout.csv", "BBMB_ClueLegend.txt");		
+		board.setConfigFiles("data/BBMB_ClueLayout.csv", "data/BBMB_ClueLegend.txt");		
 		board.initialize();
 	}
 	
@@ -125,7 +125,7 @@ public class BBMB_BoardAdjTargetTests {
 		Set<BoardCell> testList = board.getTargets();
 		assertEquals(2, testList.size());
 		assertTrue(testList.contains(board.getCellAt(3, 0)));
-		assertTrue(testList.contains(board.getCellAt(0, 4)));
+		assertTrue(testList.contains(board.getCellAt(0,3)));
 		
 		board.calcTargets(6,0,1);
 		testList = board.getTargets();
@@ -140,7 +140,7 @@ public class BBMB_BoardAdjTargetTests {
 		
 		board.calcTargets(5,9,3);
 		testList = board.getTargets();
-		assertEquals(9, testList.size());
+		assertEquals(10, testList.size());
 	}
 	// Ensure that a player can target a door
 	// These cells are DARK RED on the planning spreadsheet
@@ -150,6 +150,7 @@ public class BBMB_BoardAdjTargetTests {
 		// Test a square surrounding
 		board.calcTargets(2,8,4);
 		Set<BoardCell> testList = board.getTargets();
+
 		assertTrue(testList.contains(board.getCellAt(3, 7)));
 
 		board.calcTargets(5,7,6);
@@ -169,6 +170,9 @@ public class BBMB_BoardAdjTargetTests {
 
 		board.calcTargets(3,7,2);
 		testList = board.getTargets();
+		for (BoardCell bitches : testList) {
+			System.out.println(bitches);
+		}
 		assertTrue(testList.contains(board.getCellAt(5, 7)));
 	}
 }
