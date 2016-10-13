@@ -271,6 +271,9 @@ public class CR_BoardAdjTargetTests {
 	{
 		board.calcTargets(12, 7, 3);
 		Set<BoardCell> targets= board.getTargets();
+		for (BoardCell x : targets) {
+			System.out.println(x);
+		}
 		assertEquals(12, targets.size());
 		// directly up and down
 		assertTrue(targets.contains(board.getCellAt(15, 7)));

@@ -77,8 +77,7 @@ public class Board {
 							board[i][j].setDoorDirection(DoorDirection.DOWN);
 						} else if (cellTypes.get(cellNum).charAt(1) == 'L') {
 							board[i][j].setDoorDirection(DoorDirection.LEFT);
-						}
-						else{
+						} else if (cellTypes.get(cellNum).charAt(1) == 'N'){
 							board[i][j].setType(BoardCell.CellType.ROOM);
 						}
 					} else if (cellTypes.get(cellNum).charAt(0) == 'W') {
@@ -187,11 +186,11 @@ public class Board {
 						Board.targets.add(bc);
 						continue;
 					}
-					else if(bc.getDoorDirection()==DoorDirection.RIGHT&&cell.getColumn()==bc.getColumn()-1){
+					else if(bc.getDoorDirection()==DoorDirection.RIGHT&&cell.getColumn()==bc.getColumn()+1){
 						Board.targets.add(bc);
 						continue;
 					}
-					else if(bc.getDoorDirection()==DoorDirection.LEFT&&cell.getColumn()==bc.getColumn()+1){
+					else if(bc.getDoorDirection()==DoorDirection.LEFT&&cell.getColumn()==bc.getColumn()-1){
 						Board.targets.add(bc);
 						continue;
 					}
