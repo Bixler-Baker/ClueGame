@@ -117,6 +117,9 @@ public class Board {
 			for(int j=0;j<board[0].length;j++){
 				BoardCell cell = board[i][j];
 				adjMatrix.put(cell, new HashSet<BoardCell>());
+				if(cell.isRoom()){
+					continue;
+				}
 				if (cell.isDoorway()) {
 					if (cell.getDoorDirection()==DoorDirection.UP) {
 						adjMatrix.get(cell).add(board[cell.getRow()-1][cell.getColumn()]);
@@ -132,33 +135,29 @@ public class Board {
 				if(cell.getRow()>0){
 					if(!board[cell.getRow()-1][cell.getColumn()].isRoom()){
 						if(board[cell.getRow()-1][cell.getColumn()].isDoorway()&&board[cell.getRow()-1][cell.getColumn()].getDoorDirection()!=DoorDirection.DOWN){
-							continue;
 						}
-						adjMatrix.get(cell).add(board[cell.getRow()-1][cell.getColumn()]);
+						else adjMatrix.get(cell).add(board[cell.getRow()-1][cell.getColumn()]);
 					}
 				}
 				if(cell.getRow()<board.length-1){
 					if(!board[cell.getRow()+1][cell.getColumn()].isRoom()){
 						if(board[cell.getRow()+1][cell.getColumn()].isDoorway()&&board[cell.getRow()+1][cell.getColumn()].getDoorDirection()!=DoorDirection.UP){
-							continue;
 						}
-						adjMatrix.get(cell).add(board[cell.getRow()+1][cell.getColumn()]);
+						else adjMatrix.get(cell).add(board[cell.getRow()+1][cell.getColumn()]);
 					}
 				}
 				if(cell.getColumn()>0){
 					if(!board[cell.getRow()][cell.getColumn()-1].isRoom()){
 						if(board[cell.getRow()][cell.getColumn()-1].isDoorway()&&board[cell.getRow()][cell.getColumn()-1].getDoorDirection()!=DoorDirection.RIGHT){
-							continue;
 						}
-						adjMatrix.get(cell).add(board[cell.getRow()][cell.getColumn()-1]);
+						else adjMatrix.get(cell).add(board[cell.getRow()][cell.getColumn()-1]);
 					}
 				}
 				if(cell.getColumn()<board[0].length-1){
 					if(!board[cell.getRow()][cell.getColumn()+1].isRoom()){
 						if(board[cell.getRow()][cell.getColumn()+1].isDoorway()&&board[cell.getRow()][cell.getColumn()+1].getDoorDirection()!=DoorDirection.LEFT){
-							continue;
 						}
-						adjMatrix.get(cell).add(board[cell.getRow()][cell.getColumn()+1]);
+						else adjMatrix.get(cell).add(board[cell.getRow()][cell.getColumn()+1]);
 					}
 				}
 			}
