@@ -78,6 +78,9 @@ public class Board {
 						} else if (cellTypes.get(cellNum).charAt(1) == 'L') {
 							board[i][j].setDoorDirection(DoorDirection.LEFT);
 						}
+						else{
+							board[i][j].setType(BoardCell.CellType.ROOM);
+						}
 					} else if (cellTypes.get(cellNum).charAt(0) == 'W') {
 						board[i][j].setType(BoardCell.CellType.WALKWAY);
 					} else {
