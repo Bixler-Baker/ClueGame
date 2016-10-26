@@ -23,7 +23,6 @@ public class Board {
 	private static HashSet<BoardCell> visited = new HashSet<BoardCell>();
 	private static String boardConfigFile;
 	private static String roomConfig;
-	private static Solution theAnswer;
 	
 	public static int MAX_BOARD_SIZE = 0;
 

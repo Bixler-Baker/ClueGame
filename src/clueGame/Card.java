@@ -15,4 +15,12 @@ public class Card {
 	public boolean equals() {
 		// TODO: this
 	}
+	
+	public void setName(String name) { this.cardName = name; }
+	
+	public String getName() { return this.cardName; }
+	
+	public void setType(CardType type) { this.cardType = type; }
+	
+	public CardType getType() { return this.cardType; }
 }

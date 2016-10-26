@@ -1,0 +1,6 @@
+PeeWee Herman, Pink, {5,7}
+Rick Grimes, Brown, {14,4}
+Jon Snow, Grey, {3,14}
+Dean Winchester, Black, {4,20}
+Walter White, White, {16,7}
+Michael Scott, Green, {16,15}
