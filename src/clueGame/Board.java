@@ -1,5 +1,9 @@
 package clueGame;
-
+/**
+ * 
+ * @author Michael Balmes and Bixler Baker
+ *
+ */
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
